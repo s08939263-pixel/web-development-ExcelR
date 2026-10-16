@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101827">
+
+    <title>PocketWise - Expense Tracker</title>
+
+    <!-- Connect CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Connect JavaScript -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="app-shell">
+
+        <!-- HEADER -->
+        <header class="topbar">
+            <a class="brand" href="#">
+                <span class="brand-mark">₹</span>
+                <span>PocketWise</span>
+            </a>
+
+            <span class="local-tag">
+                <span class="status-dot"></span>
+                Private on this device
+            </span>
+        </header>
+
+
+        <!-- MAIN SLIDE CARD -->
+        <section class="wizard-card">
+
+            <!-- PROGRESS -->
+            <div class="progress-row">
+                <span id="stepLabel">STEP 1 OF 4</span>
+                <span id="progressPercent">25%</span>
+            </div>
+
+            <div class="progress-track"
+                 id="progressBar"
+                 role="progressbar"
+                 aria-valuemin="0"
+                 aria-valuemax="100"
+                 aria-valuenow="25">
+
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+
+            <!-- SLIDE 1: WELCOME -->
+            <section class="slide active" data-slide="0">
+
+                <div class="hero-icon">₹</div>
+
+                <p class="eyebrow">YOUR MONEY, MADE CLEAR</p>
+
+                <h1>Take control of your money.</h1>
+
+                <p class="slide-copy">
+                    A simple space to record what comes in,
+                    what goes out, and what remains.
+                </p>
+
+                <div class="feature-list">
+
+                    <div>
+                        <span class="feature-check">✓</span>
+                        <span>Track income and expenses</span>
+                    </div>
+
+                    <div>
+                        <span class="feature-check">✓</span>
+                        <span>See your balance update instantly</span>
+                    </div>
+
+                    <div>
+                        <span class="feature-check">✓</span>
+                        <span>Keep records in this browser</span>
+                    </div>
+
+                </div>
+
+                <button type="button" class="primary full" data-next>
+                    Get started →
+                </button>
+
+            </section>
+
+
+            <!-- SLIDE 2: ADD INCOME -->
+            <section class="slide" data-slide="1" hidden>
+
+                <p class="eyebrow">STEP 2 · MONEY IN</p>
+
+                <h1>Add your income</h1>
+
+                <p class="slide-copy">
+                    Record pocket money, salary, gifts,
+                    or any money you receive.
+                </p>
+
+                <form id="incomeForm" class="entry-form">
+
+                    <label for="incomeDescription">
+                        What is it from?
+                    </label>
+
+                    <input
+                        id="incomeDescription"
+                        name="description"
+                        maxlength="100"
+                        placeholder="e.g. Pocket money"
+                        required
+                    >
+
+                    <label for="incomeAmount">
+                        Amount (₹)
+                    </label>
+
+                    <div class="amount-field">
+                        <span>₹</span>
+
+                        <input
+                            id="incomeAmount"
+                            name="amount"
+                            type="number"
+                            min="0.01"
+                            max="100000000"
+                            step="0.01"
+                            placeholder="0.00"
+                            required
+                        >
+                    </div>
+
+                    <label for="incomeDate">
+                        Date received
+                    </label>
+
+                    <input
+                        id="incomeDate"
+                        name="date"
+                        type="date"
+                        required
+                    >
+
+                    <button class="primary full" type="submit">
+                        Save income →
+                    </button>
+
+                </form>
+
+                <button type="button" class="text-button" data-next>
+                    Skip for now
+                </button>
+
+            </section>
+
+
+            <!-- SLIDE 3: ADD EXPENSE -->
+            <section class="slide" data-slide="2" hidden>
+
+                <p class="eyebrow">STEP 3 · MONEY OUT</p>
+
+                <h1>Add an expense</h1>
+
+                <p class="slide-copy">
+                    Record purchases and spending so you know
+                    where your money goes.
+                </p>
+
+                <form id="expenseForm" class="entry-form">
+
+                    <label for="expenseDescription">
+                        What did you spend on?
+                    </label>
+
+                    <input
+                        id="expenseDescription"
+                        name="description"
+                        maxlength="100"
+                        placeholder="e.g. Food or bus fare"
+                        required
+                    >
+
+                    <label for="expenseAmount">
+                        Amount (₹)
+                    </label>
+
+                    <div class="amount-field">
+                        <span>₹</span>
+
+                        <input
+                            id="expenseAmount"
+                            name="amount"
+                            type="number"
+                            min="0.01"
+                            max="100000000"
+                            step="0.01"
+                            placeholder="0.00"
+                            required
+                        >
+                    </div>
+
+                    <label for="expenseDate">
+                        Date spent
+                    </label>
+
+                    <input
+                        id="expenseDate"
+                        name="date"
+                        type="date"
+                        required
+                    >
+
+                    <button class="primary full" type="submit">
+                        Save expense →
+                    </button>
+
+                </form>
+
+                <button type="button" class="text-button" data-next>
+                    Skip for now
+                </button>
+
+            </section>
+
+
+            <!-- SLIDE 4: DASHBOARD -->
+            <section class="slide" data-slide="3" hidden>
+
+                <p class="eyebrow">STEP 4 · YOUR OVERVIEW</p>
+
+                <h1>Your money at a glance</h1>
+
+                <p class="slide-copy">
+                    Your totals update whenever you add
+                    or remove a transaction.
+                </p>
+
+
+                <!-- SUMMARY CARDS -->
+                <div class="summary-grid">
+
+                    <article class="summary-card income-summary">
+                        <span class="summary-label">
+                            Total income
+                        </span>
+
+                        <strong id="totalIncome">₹0.00</strong>
+
+                        <span class="summary-symbol">↗</span>
+                    </article>
+
+
+                    <article class="summary-card expense-summary">
+                        <span class="summary-label">
+                            Total expenses
+                        </span>
+
+                        <strong id="totalExpenses">₹0.00</strong>
+
+                        <span class="summary-symbol">↘</span>
+                    </article>
+
+
+                    <article class="summary-card balance-summary">
+                        <span class="summary-label">
+                            Remaining balance
+                        </span>
+
+                        <strong id="balance">₹0.00</strong>
+
+                        <span class="summary-note" id="balanceNote">
+                            Income minus expenses
+                        </span>
+                    </article>
+
+                </div>
+
+
+                <!-- TRANSACTION HISTORY -->
+                <div class="history-heading">
+                    <h2>Recent transactions</h2>
+                    <span id="transactionCount">0 records</span>
+                </div>
+
+                <ul id="transactionList" class="transaction-list">
+
+                    <li class="empty-state">
+                        <span class="empty-icon">↗</span>
+
+                        <strong>No transactions yet</strong>
+
+                        <span>
+                            Add income or expenses to see them here.
+                        </span>
+                    </li>
+
+                </ul>
+
+
+                <!-- DASHBOARD BUTTONS -->
+                <div class="dashboard-actions">
+
+                    <button
+                        type="button"
+                        class="secondary"
+                        data-go="1"
+                    >
+                        + Add income
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary"
+                        data-go="2"
+                    >
+                        + Add expense
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="text-button"
+                    id="exportButton"
+                >
+                    Export transactions as CSV
+                </button>
+
+            </section>
+
+
+            <!-- SLIDE NAVIGATION -->
+            <div class="nav-row" id="navRow">
+
+                <button
+                    type="button"
+                    class="back-button"
+                    id="backButton"
+                    disabled
+                >
+                    ← Back
+                </button>
+
+                <span class="slide-dots">
+                    <span class="dot active-dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </span>
+
+                <button
+                    type="button"
+                    class="next-button"
+                    id="nextButton"
+                >
+                    Next →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <span>Made for everyday money clarity</span>
+            <span>HTML · CSS · JavaScript</span>
+        </footer>
+
+        <p class="privacy-note">
+            Your transactions are saved in this browser only.
+            They are not synced to other devices.
+        </p>
+
+        <div class="toast" id="toast" role="status"></div>
+
+    </main>
+
+</body>
+</html>
